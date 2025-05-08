@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 const topicsEasy: string[] = [
@@ -63,16 +64,19 @@ export default function Home() {
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
-    const initScore = parseInt(window.localStorage.getItem("score") ?? "0"); 
-    setScore(initScore);
+    const initScore = localStorage.getItem("score");
+    if (initScore != null) {
+      setScore(parseInt(initScore));
+    } 
   }, []);
-
-  useEffect(() => {
-    if (score < 0) {
-      setScore(0);
+  
+  const updateScore = (newScore: number) => {
+    if (newScore < 0) {
+      newScore = 0;
     }
-    window.localStorage.setItem("score", score.toString());
-  }, [score]);
+    setScore(newScore);
+    localStorage.setItem("score", newScore.toString());
+  };
 
   return (
     <main className="flex flex-col items-center min-h-screen p-8 font-mono justify-self-center md:w-2/3 lg:w-1/2">
@@ -85,22 +89,22 @@ export default function Home() {
           <button className="base-button text-xl px-6 py-4 bg-green-200" onClick={() => {
             setTopic(getRandomTopic());
             if (topic.difficulty === -1) {
-              setScore(score*2);
+              updateScore(score*2);
             }
             else {
-              setScore(score+(topic.difficulty+1)*2);
+              updateScore(score+(topic.difficulty+1)*2);
             }
           }}>Solved {topic.difficulty === -1 ? "2x" : `+${(topic.difficulty+1)*2}`}</button>
           <button className="base-button text-xl px-6 py-4 bg-red-200" onClick={() => {
             setTopic(getRandomTopic());
             if (topic.difficulty !== -1) {
-              setScore(score-(3-topic.difficulty));
+              updateScore(score-(3-topic.difficulty));
             }
           }}>New Topic {topic.difficulty === -1 ? "0" : `-${3-topic.difficulty}`}</button>
         </div>
         <p className="text-2xl mb-10"><span className="font-bold">Score: </span>{Math.max(0, score)}</p>
         <button className="base-button text-xl px-4 py-2 bg-white" onClick={() => {
-          setScore(0);
+          updateScore(0);
         }}>Reset</button>
       </div>
     </main>
