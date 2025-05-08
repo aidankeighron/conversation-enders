@@ -60,13 +60,13 @@ function getRandomTopic(): Topic {
 
 export default function Home() {
   const [topic, setTopic] = useState<Topic>(getRandomTopic());
-  const [score, setScore] = useState<number>(parseInt(localStorage.getItem("score") ?? "") || 0);
+  const [score, setScore] = useState<number>(parseInt(window.localStorage.getItem("score") ?? "") || 0);
 
   useEffect(() => {
     if (score < 0) {
       setScore(0);
     }
-    localStorage.setItem("score", score.toString());
+    window.localStorage.setItem("score", score.toString());
   }, [score]);
 
   return (
