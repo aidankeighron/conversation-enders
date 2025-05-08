@@ -31,9 +31,14 @@ const topicsHard: string[] = [
 
 const bonusOdds: number = 5;
 const bonusTopics: string[] = [
-  "Get them to say the word frog while talking about food.",
-  "Get them to ask you what your favorite dinosaur is without talking about dinosaur at all.",
-  "Get them to shake your hand without asking.",
+  `Get them to pick up a small, inconspicuous item you "accidentally" dropped, and hand it back to you, without you verbally acknowledging the drop or asking them to pick it up.`,
+  `Get them to offer you a small, insignificant item of theirs that you've subtly admired (e.g., "That's a cool-looking pen!").`,
+  `Get them to shake your hand without asking.`,
+  `Get them to offer you a drink without you asking for one.`,
+  `Get them to tell you their favorite childhood memory without directly asking "What's your favorite childhood memory?"`,
+  `Get them to recommend a book or movie to you without you explicitly asking for a recommendation.`,
+  `Get them to say the name of a specific, fairly common animal (e.g., "elephant") while discussing travel.`,
+  `Get them to say the name of a fruit while discussing colors.`,
 ]
 
 const topics: string[][] = [topicsEasy, topicsMedium, topicsHard];
